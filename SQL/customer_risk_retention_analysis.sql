@@ -1,0 +1,75 @@
+-- =====================================================================
+-- Ecommerce Customer Analytics
+-- File 3 of 3: segmentation_queries.sql
+--   Behavioral and demographic customer groups: non-buyers, high
+--   returners, churned customers, and repeat rate by first category.
+--
+-- Database: PostgreSQL (Supabase), schema public
+--
+-- RUN ORDER: customer_analysis.sql -> rfm_analysis.sql -> segmentation_queries.sql
+--   Needs the views sales, customer_summary and customer_profile
+--   from customer_analysis.sql.
+--
+-- Every query here is read-only (SELECT). No query selects
+-- Customer_Name, Customer_Email or Customer_Number.
+-- Do not use SELECT * on customer_profile: it contains personal columns.
+-- =====================================================================
+
+
+-- ---------------------------------------------------------------------
+-- Q7. Who are the 46 customers with no purchases,
+--      and what do they look like demographically?
+--      ROLLUP adds subtotal rows (NULL = "all"): one per age group,
+--      plus a grand total.
+-- ---------------------------------------------------------------------
+SELECT age_group,
+       "Gender",
+       COUNT(*) AS inactive_customers
+FROM customer_profile
+WHERE is_active = 0
+GROUP BY ROLLUP(age_group, "Gender")
+ORDER BY age_group NULLS LAST, "Gender" NULLS LAST;
+
+-- Result: 46 in total. By age group: 18-25: 6 | 26-35: 8 | 36-45: 8 | 46-55: 10 | 56-65: 14
+--         Non-buyers lean older (56-65 has the most).
+
+
+-- ---------------------------------------------------------------------
+-- Q8. Which customers have the highest return rates
+--      (possible abuse or fraud)? Minimum 5 orders.
+--      A minimum order count avoids flagging customers who returned 1 of 1.
+--      With a 50% overall return rate, some 100% returners are expected by
+--      chance alone, so treat this as a review list, not proof of abuse.
+-- ---------------------------------------------------------------------
+SELECT cs."Customer_ID",
+       cs.orders,
+       cs.returned_orders,
+       ROUND(100.0 * cs.returned_orders / cs.orders, 1) AS return_rate_pct,
+       ROUND(cs.net_amount - cs.realised_amount, 2)     AS returned_value
+FROM customer_summary cs
+WHERE cs.orders >= 5
+ORDER BY return_rate_pct DESC, returned_value DESC
+LIMIT 50;
+
+-- Result: 185 customers have 5+ orders; top 50 shown.
+--         Highest: ID 430 (7 of 7 returned, 6,948.57), ID 350 (5 of 5, 5,808.05)
+
+
+-- ---------------------------------------------------------------------
+-- Q8. What is the churn rate, i.e. customers with no purchase
+--      in the last 6 or 12 months?
+--      "Today" is the last date in the data (25-03-2023), not the real date.
+-- ---------------------------------------------------------------------
+WITH ref AS (SELECT MAX(purchase_date) AS as_of FROM sales)
+SELECT COUNT(*) AS buyers,
+       COUNT(*) FILTER (WHERE last_purchase < as_of - INTERVAL '6 months')  AS no_buy_6m,
+       ROUND(100.0 * COUNT(*) FILTER (WHERE last_purchase < as_of - INTERVAL '6 months')  / COUNT(*), 1) AS churn_6m_pct,
+       COUNT(*) FILTER (WHERE last_purchase < as_of - INTERVAL '12 months') AS no_buy_12m,
+       ROUND(100.0 * COUNT(*) FILTER (WHERE last_purchase < as_of - INTERVAL '12 months') / COUNT(*), 1) AS churn_12m_pct
+FROM customer_summary
+CROSS JOIN ref;
+
+-- Result: 954 buyers · 6 months: 450 (47.2%) · 12 months: 174 (18.2%)
+
+
+-- ---------------------------------------------------------------------
