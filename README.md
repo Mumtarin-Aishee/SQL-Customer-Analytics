@@ -6,6 +6,7 @@
 
 An ecommerce business sells six product categories (Toys, Automotive, Home, Electronics, Fashion and Books), online and in-store, to customers in 10 cities. It has two years of order data (March 2021 to March 2023) but **no clear view of who its customers are or how they behave**. Every customer is treated the same, so retention and marketing budget is spread evenly instead of going where it matters most.
 
+
 **The problem in one picture: where 1,000 registered customers end up**
 
 ```mermaid
