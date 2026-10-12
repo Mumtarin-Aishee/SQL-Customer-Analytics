@@ -274,3 +274,25 @@ LIMIT 20;
 -- Result: #1 is ID 510 (net 8,772.34, kept 3,823.83).
 --         ID 430 is #16 on net revenue (6,948.57) but kept 0.00, because all 7 orders were returned.
 --         ID 706 kept only 263.06 of 6,678.54. Ranking by realised_amount gives a fairer top 20.
+
+Q5. Is a customer's first category predictive of repeat purchase?
+--      DISTINCT ON keeps only each customer's first order.
+-- ---------------------------------------------------------------------
+WITH first_txn AS (
+  SELECT DISTINCT ON ("Customer_ID") "Customer_ID", "Product_Category" AS first_category
+  FROM sales
+  ORDER BY "Customer_ID", purchase_date, "Transaction_ID"
+)
+SELECT f.first_category,
+       COUNT(*)                                                            AS customers,
+       COUNT(*) FILTER (WHERE cs.orders >= 2)                              AS repeaters,
+       ROUND(100.0 * COUNT(*) FILTER (WHERE cs.orders >= 2) / COUNT(*), 1) AS repeat_rate_pct
+FROM first_txn f
+JOIN customer_summary cs USING ("Customer_ID")
+GROUP BY f.first_category
+ORDER BY repeat_rate_pct DESC;
+
+-- Result: Home 88.4% · Fashion 85.4% · Automotive 84.4% · Toys 83.6% · Electronics 83.3% · Books 83.0%
+--         A 5-point spread on about 150 customers per category is within chance:
+--         the first category does not really predict repeat buying.
+
