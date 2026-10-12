@@ -6,7 +6,7 @@
 **What was analyzed:** 3,000 orders placed by 954 buying customers (out of 1,000 registered) of an ecommerce business. The data covers 25 March 2021 to 25 March 2023.
 
 ## Business Problem
-An ecommerce business sells six product categories (Toys, Automotive, Home, Electronics, Fashion, Books). It sells online and in-store, to customers in 10 cities. It wants to know:
+An ecommerce business sells six product categories (Toys, Automotive, Home, Electronics, Fashion, Books). It sells online  to customers in 10 cities. It wants to know:
 
 - **Who comes back?** How many customers stop after one order, and how many return?
 - **Who is worth the most?** Which customers and segments generate most of the value?
