@@ -17,7 +17,7 @@
 
 
 -- ---------------------------------------------------------------------
--- Q6. Who are the 46 customers with no purchases,
+-- Q8. Who are the 46 customers with no purchases,
 --      and what do they look like demographically?
 --      ROLLUP adds subtotal rows (NULL = "all"): one per age group,
 --      plus a grand total.
@@ -35,7 +35,7 @@ ORDER BY age_group NULLS LAST, "Gender" NULLS LAST;
 
 
 -- ---------------------------------------------------------------------
--- Q7. Which customers have the highest return rates
+-- Q9. Which customers have the highest return rates
 --      (possible abuse or fraud)? Minimum 5 orders.
 --      A minimum order count avoids flagging customers who returned 1 of 1.
 --      With a 50% overall return rate, some 100% returners are expected by
