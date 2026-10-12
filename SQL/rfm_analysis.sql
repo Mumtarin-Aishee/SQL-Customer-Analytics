@@ -59,7 +59,7 @@ SELECT COUNT(*) AS customer_rfm_rows FROM customer_rfm;   -- expect 954
 -- #####################################################################
 
 -- ---------------------------------------------------------------------
--- 5A. What is the RFM segmentation, with segment sizes and revenue?
+-- 6A. What is the RFM segmentation, with segment sizes and revenue?
 -- ---------------------------------------------------------------------
 SELECT rfm_segment,
        COUNT(*)                                                     AS customers,
@@ -79,7 +79,7 @@ ORDER BY net_revenue DESC;
 
 
 -- ---------------------------------------------------------------------
--- 5B. RFM scores and segment for every buying customer
+-- 6B. RFM scores and segment for every buying customer
 -- ---------------------------------------------------------------------
 SELECT "Customer_ID",
        recency_days,
