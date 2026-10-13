@@ -2,35 +2,12 @@
 
 **PostgreSQL (Supabase) · RFM segmentation · Customer lifetime value (CLV) · Churn · Repeat-purchase analysis**
 
+<p align="center"><img src="customer_analytics_dashboard.png" width="800" alt="SQL Customer Analytics dashboard"></p>
+
+
 ## 🧭 Business Problem
 
 An ecommerce business sells six product categories (Toys, Automotive, Home, Electronics, Fashion and Books), online and in-store, to customers in 10 cities. It has two years of order data (March 2021 to March 2023) but **no clear view of who its customers are or how they behave**. Every customer is treated the same, so retention and marketing budget is spread evenly instead of going where it matters most.
-
-
-<p align="center"><img src="assets/customer-analytics-dashboard.png" width="900" alt="SQL Customer Analytics dashboard"></p>
-
-```mermaid
-flowchart LR
-    A["👥 Registered customers<br/><b>1,000</b>"] ==>|954 bought| B["🛒 Bought at least once<br/><b>954</b>"]
-    A -.->|46 never bought| C["🚫 Never bought<br/><b>46</b> · 4.6%"]
-    B ==>|504| D["🟩 Active<br/>ordered in last 6 months<br/><b>504</b> · 52.8%"]
-    B ==>|276| E["🟨 Lapsing<br/>last order 6-12 months ago<br/><b>276</b> · 28.9%"]
-    B ==>|174| F["🟥 Churned<br/>no order for 12+ months<br/><b>174</b> · 18.2%"]
-
-    classDef reg fill:#1E88E5,stroke:#0D47A1,color:#FFFFFF
-    classDef buy fill:#8E24AA,stroke:#4A148C,color:#FFFFFF
-    classDef never fill:#9E9E9E,stroke:#424242,color:#FFFFFF
-    classDef active fill:#43A047,stroke:#1B5E20,color:#FFFFFF
-    classDef lapsing fill:#FBC02D,stroke:#F57F17,color:#000000
-    classDef churned fill:#E53935,stroke:#B71C1C,color:#FFFFFF
-    class A reg
-    class B buy
-    class C never
-    class D active
-    class E lapsing
-    class F churned
-```
-
 
 The business needs answers to four questions:
 
