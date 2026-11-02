@@ -386,7 +386,7 @@ Transaction Data → Validation → SQL Views → Customer Metrics → RFM Scori
 
 | Deliverable | Link | Status |
 |---|---|---|
-| Purchase behavior & CLV (views + Q1–Q5) | [SQL/customer_purchas##e_behaviour.sql](SQL/customer_purchase_behaviour.sql) | ✅ |
+| Purchase behavior & CLV (views + Q1–Q5) | [SQL/customer_purchase_behaviour.sql](SQL/customer_purchase_behaviour.sql) | ✅ |
 | RFM segmentation (Q6A–Q6B) | [SQL/segmentation_queries.sql](SQL/segmentation_queries.sql) | ✅ |
 | Risk & retention (Q7–Q9) | [SQL/customer_risk_retention_analysis.sql](SQL/customer_risk_retention_analysis.sql) | ✅ |
 | RFM scores for all customers | [results/q6b_rfm_scores.csv](results/q6b_rfm_scores.csv) | ✅ |
