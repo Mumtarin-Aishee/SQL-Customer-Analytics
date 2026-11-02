@@ -412,14 +412,14 @@ The queries are split into three files, run in this order. Each file starts with
 
 ```
 
-## 👤 Author
+👤 Author
 
-**`[Mumtarin Aishee Rabeya]`**
-* GitHub: [@Mumtarin-Aishee](https://github.com/Mumtarin-Aishee)
-* LinkedIn: `[https://www.linkedin.com/in/mumtarin/]`
-* Portfolio / contact: `[aimumtarin@gmail.com]`
+[Mumtarin Aishee Rabeya]
+GitHub: [@Mumtarin-Aishee](https://github.com/Mumtarin-Aishee)
+LinkedIn: `[https://www.linkedin.com/in/mumtarin/]`
+Portfolio / contact: `[aimumtarin@gmail.com]`
 
-**Methods:**
+Methods:
 - Reusable SQL views and customer-level metrics
 - Repeat-purchase and order-frequency analysis
 - RFM segmentation (Recency, Frequency, Monetary)
