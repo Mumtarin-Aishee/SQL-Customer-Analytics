@@ -419,7 +419,8 @@ GitHub: [@Mumtarin-Aishee](https://github.com/Mumtarin-Aishee)
 LinkedIn: `[https://www.linkedin.com/in/mumtarin/]`
 Portfolio / contact: `[aimumtarin@gmail.com]`
 
-Methods:
+Methods & Dataset:
+- Dataset is sythetic, the actual dataset was not used for protecting client privacy
 - Reusable SQL views and customer-level metrics
 - Repeat-purchase and order-frequency analysis
 - RFM segmentation (Recency, Frequency, Monetary)
